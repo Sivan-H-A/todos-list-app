@@ -49,6 +49,6 @@
     align-items: center;
     color: var(--main-color);
 }
-c-checkbox{
-    color:var(--main-color);
+.c-label{
+    margin: auto 0;
 }

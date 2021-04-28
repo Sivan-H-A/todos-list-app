@@ -32,7 +32,7 @@ export default function TodosItemComponent({todoItem, onCheckedItem, onDeleteIte
     return (
         <>
             <input type="checkbox" className="c-checkbox text-center col-2"  disabled={disable} checked={disable} onChange={(e)=> onCheckboxClick(e)}/>
-            <label className={`${disabledClass} col-8`}>
+            <label className={`${disabledClass} c-label col-8`}>
                 {todoItem.title}
             </label>
             <Button className="todo-cancel-item btn-danger" onClick={()=> onDeleteTodoItem()}>x</Button>
