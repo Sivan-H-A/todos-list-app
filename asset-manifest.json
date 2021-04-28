@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/todos-list-app/static/css/main.41abe01c.chunk.css",
-    "main.js": "/todos-list-app/static/js/main.7f75e9ab.chunk.js",
-    "main.js.map": "/todos-list-app/static/js/main.7f75e9ab.chunk.js.map",
+    "main.css": "/todos-list-app/static/css/main.7fdbdd50.chunk.css",
+    "main.js": "/todos-list-app/static/js/main.762673d2.chunk.js",
+    "main.js.map": "/todos-list-app/static/js/main.762673d2.chunk.js.map",
     "runtime-main.js": "/todos-list-app/static/js/runtime-main.bcbd638c.js",
     "runtime-main.js.map": "/todos-list-app/static/js/runtime-main.bcbd638c.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/todos-list-app/static/css/2.4c97ca4f.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.7f14dc0c.chunk.js.map": "/todos-list-app/static/js/3.7f14dc0c.chunk.js.map",
     "index.html": "/todos-list-app/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/todos-list-app/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.41abe01c.chunk.css.map": "/todos-list-app/static/css/main.41abe01c.chunk.css.map",
+    "static/css/main.7fdbdd50.chunk.css.map": "/todos-list-app/static/css/main.7fdbdd50.chunk.css.map",
     "static/js/2.4c006f6d.chunk.js.LICENSE.txt": "/todos-list-app/static/js/2.4c006f6d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bcbd638c.js",
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.4c006f6d.chunk.js",
-    "static/css/main.41abe01c.chunk.css",
-    "static/js/main.7f75e9ab.chunk.js"
+    "static/css/main.7fdbdd50.chunk.css",
+    "static/js/main.762673d2.chunk.js"
   ]
 }
