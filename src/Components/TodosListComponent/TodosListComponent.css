@@ -6,6 +6,7 @@
 }
 .todo-cancel-item{
     visibility: hidden;
+    padding: 2px 7px;
 }
 .c-todo-item:hover >.todo-cancel-item{
     visibility: initial;
@@ -15,6 +16,7 @@
     flex-basis: auto;
     align-items: center;
     justify-content: center;
+    padding: 5px;
 }
 .c-todo-item-checked{
     text-decoration: line-through;
@@ -43,10 +45,10 @@
     margin: 0 auto;
 }
 .c-todo-info-title{    
-    margin: 0 auto;
+    margin: auto;
     align-items: center;
     color: var(--main-color);
 }
-/* c-checkbox{
-    :var(--main-color);
-} */
+c-checkbox{
+    color:var(--main-color);
+}
