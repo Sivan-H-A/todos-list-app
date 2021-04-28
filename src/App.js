@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {  Container } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
+import TodosListComponent from './Components/TodosListComponent/TodosListComponent';
+import TodoItemModel from './Model/TodoItem';
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  function handleKeyDown(e){
+    if(e.key==='Enter' && e.target.value){
+      setTodos(todos.concat(new TodoItemModel(e.target.value)));
+      e.target.value="";
+    }
+  }
+  function onDeleteItem(item){
+    let tempArr = [];
+      todos.splice(todos.findIndex(x=>x.id===item.id),1);
+      tempArr= tempArr.concat(todos);
+      console.log(tempArr);
+      setTodos(tempArr);
+  }
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+        <h1 className="text-center row todos-header">Todos</h1>
+        <input className="row todos-input" placeholder="What's next?" onKeyDown={(e)=>handleKeyDown(e)}></input>
+        {todos && todos.length>0 ? <TodosListComponent todosList={todos} onDeleteItem={onDeleteItem}/> : ""}
+        
+    </Container>
   );
 }
 
