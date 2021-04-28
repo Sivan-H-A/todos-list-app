@@ -1,0 +1,52 @@
+:root {
+    --marked-color: rgb(175, 172, 172);    
+    --main-color: #005aa7;
+    --gr-color: #fffde4;
+      
+}
+.todo-cancel-item{
+    visibility: hidden;
+}
+.c-todo-item:hover >.todo-cancel-item{
+    visibility: initial;
+}
+.c-todo-item{
+    display: flex;
+    flex-basis: auto;
+    align-items: center;
+    justify-content: center;
+}
+.c-todo-item-checked{
+    text-decoration: line-through;
+    color:var(--marked-color);
+    align-items: center;
+}
+.c-todos-list-info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.list-group{
+    margin-bottom: 30px;
+    width: 70%;
+    margin: 0 auto;
+    color:var(--main-color);
+}
+.c-info-listgroup>button{
+    margin:0 10px;
+}
+.c-btn-marked{
+    border: 1px solid red;
+}
+.c-info-listgroup{
+    align-items: center;
+    margin: 0 auto;
+}
+.c-todo-info-title{    
+    margin: 0 auto;
+    align-items: center;
+    color: var(--main-color);
+}
+/* c-checkbox{
+    :var(--main-color);
+} */
