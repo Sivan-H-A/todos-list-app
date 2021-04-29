@@ -13,9 +13,6 @@ function App() {
     if(localTodos){
       setTodos(localTodos);
     }
-    return () => {
-      localStorage.setItem('todos',JSON.stringify(todos));
-    }
   }, []);
 
   useEffect(() => {

@@ -8,7 +8,7 @@ export default function TodosListComponent({todosList, onDeleteItem, onCheckedTo
     const [toggleBtn1, setToggleBtn1] = useState(true);
     const [toggleBtn2, setToggleBtn2] = useState(false);
     const [toggleBtn3, setToggleBtn3] = useState(false);
-    const [completed, setCompleted] = useState(0);
+    const [completed, setCompleted] = useState(todosList.filter(x=>x.completed).length);
     const [filterList, setFilterList] = useState([]);
 
     const todosListGroup = []; 
