@@ -38,7 +38,7 @@ export default function TodosItemComponent({todoItem, onCheckedItem, onDeleteIte
             <Button className="todo-cancel-item btn-danger" onClick={()=> onDeleteTodoItem()}>x</Button>
             <Modal show={show} onHide={()=>setShow(false)}>
                 <Modal.Header closeButton>
-                <Modal.Title>Delete Item</Modal.Title>
+                <Modal.Title>Delete Todo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Are you sure you want to delete todo: {todoItem.title}</Modal.Body>
                 <Modal.Footer>

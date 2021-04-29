@@ -36,6 +36,7 @@
 }
 .c-info-listgroup>button{
     margin:0 10px;
+    font-size: .8rem;
 }
 .c-btn-marked{
     border: 1px solid red;
@@ -47,8 +48,10 @@
 .c-todo-info-title{    
     margin: auto;
     align-items: center;
+    font-size: .8rem;
     color: var(--main-color);
 }
 .c-label{
     margin: auto 0;
+    /* overflow-x: scroll; */
 }
