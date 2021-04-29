@@ -15,11 +15,14 @@ export default function TodosListComponent({todosList, onDeleteItem}) {
 
     useEffect(() => {
         setSum(todosList.length - completed)
-        let tempArr = [];
-        setFilterList(tempArr.concat(todosList));
+        setFilter();
     }, [todosList,completed]);
 
     useEffect(() => {
+        setFilter()
+    }, [toggleBtn1, toggleBtn2,toggleBtn3])
+
+    function setFilter(){
         if(toggleBtn3){
             setFilterList(todosList.filter(x=> x.completed));
         }
@@ -30,12 +33,12 @@ export default function TodosListComponent({todosList, onDeleteItem}) {
             let tempArr = [];
             setFilterList(tempArr.concat(todosList));
         }
-    }, [toggleBtn1, toggleBtn2,toggleBtn3])
-
-    function onCheckedItem(itemId){
+    }
+    
+    function onCheckedItem(itemId, checked){
         let el = todosList.find(x=>x.id===itemId);
-        el.completed = true;
-        setCompleted(completed+1);
+        el.completed = checked;
+        setCompleted(checked? completed+1: completed-1);
     };
     function onDeleteItemCompleted(item){
         if(item.completed){
