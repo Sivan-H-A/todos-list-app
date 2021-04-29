@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/todos-list-app/static/css/main.50d8fec0.chunk.css",
-    "main.js": "/todos-list-app/static/js/main.6d441167.chunk.js",
-    "main.js.map": "/todos-list-app/static/js/main.6d441167.chunk.js.map",
+    "main.js": "/todos-list-app/static/js/main.5cc0324a.chunk.js",
+    "main.js.map": "/todos-list-app/static/js/main.5cc0324a.chunk.js.map",
     "runtime-main.js": "/todos-list-app/static/js/runtime-main.bcbd638c.js",
     "runtime-main.js.map": "/todos-list-app/static/js/runtime-main.bcbd638c.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/todos-list-app/static/css/2.4c97ca4f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.4c006f6d.chunk.js",
     "static/css/main.50d8fec0.chunk.css",
-    "static/js/main.6d441167.chunk.js"
+    "static/js/main.5cc0324a.chunk.js"
   ]
 }
