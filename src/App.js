@@ -28,12 +28,13 @@ function App() {
     }
   }
   function onCheckedTodo(itemId,checked){
-    let el = todos.find(x=>x.id===itemId);
+    const el = todos.find(x=>x.id===itemId);
+    const index = todos.indexOf(el);
     const tempTodo = new TodoItemModel(el.title);
     tempTodo.completed = checked;
+    todos.splice(index,1, tempTodo);
     let tempArr = [];
     tempArr = tempArr.concat(todos);
-    tempArr.splice(tempArr.indexOf(el),1,tempTodo);
     setTodos(tempArr);
   }
   function onDeleteItem(item){

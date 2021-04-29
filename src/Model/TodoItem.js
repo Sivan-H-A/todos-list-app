@@ -1,13 +1,10 @@
+import {v4 as uuidv4} from 'uuid';
+
 class TodoItemModel{
     constructor(title){
         this.title = title;
-        this.id = this.getRandomIntInclusive(1,100);
+        this.id = uuidv4();
         this.completed = false;        
-    }
-    getRandomIntInclusive(min,max){
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
     }
 }
 export default TodoItemModel;
