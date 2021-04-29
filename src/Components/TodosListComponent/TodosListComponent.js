@@ -3,7 +3,7 @@ import { Button, ButtonGroup,Container, ListGroup } from 'react-bootstrap'
 import TodosItemComponent from '../TodosItemComponent/TodosItemComponent'
 import './TodosListComponent.css'
 
-export default function TodosListComponent({todosList, onDeleteItem}) {
+export default function TodosListComponent({todosList, onDeleteItem, onCheckedTodo}) {
     const [sum, setSum] = useState(todosList.length);
     const [toggleBtn1, setToggleBtn1] = useState(true);
     const [toggleBtn2, setToggleBtn2] = useState(false);
@@ -36,9 +36,8 @@ export default function TodosListComponent({todosList, onDeleteItem}) {
     }
     
     function onCheckedItem(itemId, checked){
-        let el = todosList.find(x=>x.id===itemId);
-        el.completed = checked;
         setCompleted(checked? completed+1: completed-1);
+        onCheckedTodo(itemId,checked);
     };
     function onDeleteItemCompleted(item){
         if(item.completed){
