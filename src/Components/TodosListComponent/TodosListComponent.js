@@ -3,73 +3,64 @@ import { Button, ButtonGroup,Container, ListGroup } from 'react-bootstrap'
 import TodosItemComponent from '../TodosItemComponent/TodosItemComponent'
 import './TodosListComponent.css'
 
-export default function TodosListComponent({todosList, onDeleteItem, onCheckedTodo}) {
-    const [sum, setSum] = useState(todosList.length);
-    const [toggleBtn1, setToggleBtn1] = useState(true);
-    const [toggleBtn2, setToggleBtn2] = useState(false);
-    const [toggleBtn3, setToggleBtn3] = useState(false);
-    const [completed, setCompleted] = useState(todosList.filter(x=>x.completed).length);
-    const [filterList, setFilterList] = useState([]);
-
-    const todosListGroup = []; 
+export default function TodosListComponent({todosList, onDeleteItem, onCheckedTodo, onCheckedAll}) {
+    //filterBtn has 3 values: All, Active, Completed
+    const [filterBtn , setFilterBtn] = useState("All");  
+    const [checked, setChecked] = useState(false);
+    let completed = todosList.filter(x=>x.completed).length;
+    let sum = todosList.length - completed;
+    let filteredTodos = setFilter();
 
     useEffect(() => {
-        setSum(todosList.length - completed)
-        setFilter();
-    }, [todosList,completed]);
-
-    useEffect(() => {
-        setFilter()
-    }, [toggleBtn1, toggleBtn2,toggleBtn3])
+        onCheckedAll(checked);
+    }, [checked])
 
     function setFilter(){
-        if(toggleBtn3){
-            setFilterList(todosList.filter(x=> x.completed));
+        if(filterBtn === "Completed"){
+            return todosList.filter(x=> x.completed);
         }
-        if(toggleBtn2){
-            setFilterList(todosList.filter(x=> !x.completed));
+        else if(filterBtn === "Active"){
+            return todosList.filter(x=> !x.completed);
         }
-        if(toggleBtn1){
-            let tempArr = [];
-            setFilterList(tempArr.concat(todosList));
+        else if(filterBtn === "All"){
+            return [...todosList];
         }
-    }
-    
-    function onCheckedItem(itemId, checked){
-        setCompleted(checked? completed+1: completed-1);
-        onCheckedTodo(itemId,checked);
-    };
-    function onDeleteItemCompleted(item){
-        if(item.completed){
-            setCompleted(completed -1);
-        }
-        onDeleteItem(item);
-    }
-    
-    filterList.map((item)=>{
-        todosListGroup.push(
-            <ListGroup.Item className="c-todo-item row" key={item.id}>         
-               <TodosItemComponent todoItem ={item}
-                                    onCheckedItem={onCheckedItem} 
-                                    onDeleteItem={ (e)=> onDeleteItemCompleted(e)}/>
-            </ListGroup.Item>       
-        );
-    });
+    }   
 
     return (
         <Container>
-            <ListGroup variant="flush" >
-                {todosListGroup}         
-            </ListGroup>
+            {filteredTodos && filteredTodos.length>0 ? 
+                <div className="c-mark-all">
+                    <div className="c-mark-all-input">
+                        <label for="checked">{checked?"Unmark All":"Mark All"}</label>
+                        <input type="checkbox" 
+                                name="checked" 
+                                checked={checked} 
+                                    onChange={()=>setChecked(!checked)}/>
+                    </div>
+                    <ListGroup variant="flush" >
+                        {filteredTodos.map((item, index)=>{ 
+                            return <ListGroup.Item className="c-todo-item row" key={index}>         
+                                <TodosItemComponent todoItem ={item}
+                                                    onCheckedItem={(data)=>onCheckedTodo(data)} 
+                                                    onDeleteItem={(data)=> onDeleteItem(data)}/>
+                            </ListGroup.Item>
+                        })}
+                    </ListGroup>
+                </div>
+             : null }         
             <div className="c-todos-list-info">
-                <h6 className="text-center c-todo-info-title">{sum} Items left</h6>
+                <h6 className="text-center c-todo-info-title">{sum} Active items left</h6>
                 <ButtonGroup className="c-info-listgroup">
-                    <Button variant="outline-primary" className={toggleBtn1 ? "c-btn-marked":""} 
-                            onClick={(e)=>{setToggleBtn1(true); setToggleBtn2(false); setToggleBtn3(false);}}>All</Button>
-                    <Button variant="outline-primary" className={toggleBtn2 ? "c-btn-marked":""} 
-                            onClick={(e)=>{setToggleBtn2(true); setToggleBtn1(false); setToggleBtn3(false);}}>Active</Button>
-                    <Button variant="outline-primary" className={toggleBtn3 ? "c-btn-marked":""} 
-                            onClick={(e)=>{setToggleBtn3(true); setToggleBtn1(false); setToggleBtn2(false);}}>Completed</Button>
+                    <Button variant="outline-primary" 
+                            className={filterBtn==="All" ? "c-btn-marked":""} 
+                            onClick={()=>setFilterBtn('All')}>All</Button>
+                    <Button variant="outline-primary" 
+                            className={filterBtn==="Active" ? "c-btn-marked":""} 
+                            onClick={()=>setFilterBtn('Active')}>Active</Button>
+                    <Button variant="outline-primary" 
+                            className={filterBtn==="Completed" ? "c-btn-marked":""} 
+                            onClick={()=>setFilterBtn('Completed')}>Completed</Button>
                 </ButtonGroup>
             </div>
         </Container>

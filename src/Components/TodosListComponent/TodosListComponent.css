@@ -53,5 +53,15 @@
 }
 .c-label{
     margin: auto 0;
-    /* overflow-x: scroll; */
+}
+.c-mark-all{
+    color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+}
+.c-mark-all-input{
+    margin: 0 auto;
+}
+.c-mark-all-input> *{
+    padding: 0 20px
 }

@@ -7,7 +7,7 @@ import TodoItemModel from './Model/TodoItem';
 
 function App() {
   const [todos, setTodos] = useState([]);
-
+  const [input, setInput] = useState("");
   useEffect(() => {
     var localTodos = JSON.parse(localStorage.getItem('todos'));
     if(localTodos){
@@ -21,35 +21,48 @@ function App() {
     }
   }, [todos]);
 
-  function handleKeyDown(e){
-    if(e.key==='Enter' && e.target.value){
-      setTodos(todos.concat(new TodoItemModel(e.target.value)));
-      e.target.value="";
+  function onSubmit(e){
+    e.preventDefault();
+    if(input){
+      setTodos([...todos, new TodoItemModel(input)]);
+      setInput("");
     }
   }
-  function onCheckedTodo(itemId,checked){
-    const el = todos.find(x=>x.id===itemId);
-    const index = todos.indexOf(el);
-    const tempTodo = new TodoItemModel(el.title);
-    tempTodo.completed = checked;
-    todos.splice(index,1, tempTodo);
-    let tempArr = [];
-    tempArr = tempArr.concat(todos);
-    setTodos(tempArr);
+
+  function onCheckedTodo(todoItem){
+    const newTodo = new TodoItemModel(todoItem.title);
+    newTodo.completed = !todoItem.completed;
+    const index = todos.findIndex(x=>x.id===todoItem.id);
+    todos.splice(index,1, newTodo);
+    setTodos([...todos]);
   }
-  function onDeleteItem(item){
-    let tempArr = [];
-      todos.splice(todos.findIndex(x=>x.id===item.id),1);
-      tempArr= tempArr.concat(todos);
-      console.log(tempArr);
-      setTodos(tempArr);
+  function onDeleteItem(todoItem){
+    const index = todos.findIndex(x=>x.id===todoItem.id);
+    todos.splice(index,1);
+    setTodos([...todos]);
+  }
+  function onCheckedAll(checked){
+    todos.forEach(item=> item.completed=checked);
+    setTodos([...todos]);
   }
  
   return (
     <Container className="App">
         <h1 className="text-center row todos-header">Todos</h1>
-        <input className="row todos-input" placeholder="What's next?" onKeyDown={(e)=>handleKeyDown(e)}></input>
-        {todos && todos.length>0 ? <TodosListComponent todosList={todos} onDeleteItem={onDeleteItem} onCheckedTodo={onCheckedTodo}/> : "" }
+        <form onSubmit={onSubmit}>
+          <input className="row todos-input" 
+                placeholder="What's next?"
+                value={input}
+                onChange={(e)=>setInput(e.target.value)}></input>
+        </form>
+        {todos && todos.length>0 ? 
+          <TodosListComponent 
+            todosList={todos} 
+            onDeleteItem={onDeleteItem} 
+            onCheckedTodo={onCheckedTodo}
+            onCheckedAll={onCheckedAll}/> 
+          : "" 
+        }
         
     </Container>
   );

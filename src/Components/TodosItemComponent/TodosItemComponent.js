@@ -2,21 +2,8 @@ import React, { useState,useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 export default function TodosItemComponent({todoItem, onCheckedItem, onDeleteItem}) {
-    const [disabledClass, setDisabledClass] = useState("");
-    const [checked, setChecked] = useState(false);
     const [show, setShow] = useState(false);
-
-    function onCheckboxClick(e){      
-        setDisabledClass(e.target.checked? "c-todo-item-checked":"");
-        setChecked(e.target.checked? true : false);  
-        onCheckedItem(todoItem.id,e.target.checked);
-    }
-
-    useEffect(() => {     
-        setChecked (todoItem.completed? true: false)
-        setDisabledClass(todoItem.completed? "c-todo-item-checked":"");       
-    }, [todoItem])
-
+  
     function onDeleteTodoItem(){
         if(todoItem.completed){
             onDeleteItem(todoItem)
@@ -27,8 +14,11 @@ export default function TodosItemComponent({todoItem, onCheckedItem, onDeleteIte
     }
     return (
         <>
-            <input type="checkbox" className="c-checkbox text-center col-2" checked={checked} onChange={(e)=> onCheckboxClick(e)}/>
-            <label className={`${disabledClass} c-label col-8`}>
+            <input  type="checkbox" 
+                    className={`${todoItem.completed ? "c-todo-item-checked" : "c-checkbox"} text-center col-2`} 
+                    checked={todoItem.completed} 
+                    onChange={()=>onCheckedItem(todoItem)}/>
+            <label className={`${todoItem.completed ? "c-todo-item-checked" : "c-checkbox"} text-center c-label col-8`}>
                 {todoItem.title}
             </label>
             <Button className="todo-cancel-item btn-danger" onClick={()=> onDeleteTodoItem()}>x</Button>
